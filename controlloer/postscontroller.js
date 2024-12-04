@@ -21,13 +21,20 @@ const update = (req, res) => {
 
 //show
 const show = (req, res) => {
+    let post = null;
     const postId = req.params.id;
     for (let i = 0; i < postslist.length; i++) {
         const curpost = postslist[i];
         console.log(curpost);
         if (curpost.id === postId) {
-           res.json(curpost) 
+            post = curpost;
+            res.json(curpost)    
         }
+    }
+    if (post === null) {
+        res.sendStatus(404);
+    } else {
+        res.json(post);
     }
 }
 
