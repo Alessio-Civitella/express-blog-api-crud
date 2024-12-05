@@ -11,8 +11,6 @@ const index = (req, res) => {
 //create
 const create = (req, res) => {
     const objectparams = req.body;
-    console.log(objectparams);
-    res.json(objectparams);
 
     const nextID = postslist[postslist.length - 1].id + 1;
 
@@ -27,7 +25,20 @@ const create = (req, res) => {
 //update
 const update = (req, res) => {
     const postId = parseInt(req.params.id);
-    res.json("Sono l'elemento modificato" + postId)
+    const objectparams=req.body;
+
+    postslist.forEach(element => {
+        if (element.id === postId) {
+            element = {
+                id: postId,
+                ...objectparams
+            }
+            
+        }
+    })
+    res.json(postslist)
+    console.log(postslist);
+    
 }
 
 //show
