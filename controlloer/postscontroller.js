@@ -10,21 +10,30 @@ const index = (req, res) => {
 
 //create
 const create = (req, res) => {
-    const newobject = req.body;
-    console.log(newobject);
-    res.json(newobject);
+    const objectparams = req.body;
+    console.log(objectparams);
+    res.json(objectparams);
+
+    const nextID = postslist[postslist.length - 1].id + 1;
+
+    const newPost = {
+        Id: nextID,
+        ...objectparams
+    }
+    postslist.push(newPost);
+    res.json(postslist)
 }
 
 //update
 const update = (req, res) => {
-    const postId = req.params.id;
+    const postId = parseInt(req.params.id);
     res.json("Sono l'elemento modificato" + postId)
 }
 
 //show
 const show = (req, res) => {
     let post = null;
-    const postId = req.params.id;
+    const postId = parseInt(req.params.id);
     for (let i = 0; i < postslist.length; i++) {
         const curpost = postslist[i];
         console.log(curpost);
@@ -42,7 +51,7 @@ const show = (req, res) => {
 
 //destroy
 const destroy = (req, res) => {
-    const postId = req.params.id;
+    const postId = parseInt(req.params.id);
     res.json("sono delete" + postId)
 }
 
