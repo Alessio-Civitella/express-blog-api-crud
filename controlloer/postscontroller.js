@@ -27,9 +27,9 @@ const update = (req, res) => {
     const postId = parseInt(req.params.id);
     const objectparams=req.body;
 
-    const postUpdate = postslist.findIndex((element) => element.id === postId);
+    const postIndexUpdate = postslist.findIndex((element) => element.id === postId);
 
-    postslist[postUpdate] = {
+    postslist[postIndexUpdate] = {
         id: postId,
         ...objectparams
     }
