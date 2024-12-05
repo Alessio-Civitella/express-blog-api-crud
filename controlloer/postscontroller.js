@@ -10,7 +10,9 @@ const index = (req, res) => {
 
 //create
 const create = (req, res) => {
-    res.json("sono il nuovo elemento");
+    const newobject = req.body;
+    console.log(newobject);
+    res.json(newobject);
 }
 
 //update
