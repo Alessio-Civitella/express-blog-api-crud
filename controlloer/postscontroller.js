@@ -27,18 +27,15 @@ const update = (req, res) => {
     const postId = parseInt(req.params.id);
     const objectparams=req.body;
 
-    postslist.forEach(element => {
-        if (element.id === postId) {
-            element = {
-                id: postId,
-                ...objectparams
-            }
-            
-        }
-    })
-    res.json(postslist)
+    const postUpdate = postslist.findIndex((element) => element.id === postId);
+
+    postslist[postUpdate] = {
+        id: postId,
+        ...objectparams
+    }
     console.log(postslist);
     
+    res.sendStatus(204)
 }
 
 //show
