@@ -60,7 +60,9 @@ const show = (req, res) => {
 //destroy
 const destroy = (req, res) => {
     const postId = parseInt(req.params.id);
-    res.json("sono delete" + postId)
+    const postDelete = postslist.findIndex((element) => element.id === postId);
+    postslist.splice(postDelete, 1);
+    res.json(postDelete);
 }
 
 module.exports = {
